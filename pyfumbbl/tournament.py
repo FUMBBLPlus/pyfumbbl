@@ -8,7 +8,7 @@ from pyfumbbl import group
 
 __all__ = [
     'get',
-    'get_schedule',
+    'schedule',
   ]
 
 styles = (
@@ -48,3 +48,6 @@ def get_schedule(tournament_id, session=None):
   url = url / str(tournament_id)
   r = session.get(url)
   return r.json()
+
+
+schedule = get_schedule

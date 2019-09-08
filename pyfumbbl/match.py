@@ -12,6 +12,7 @@ import yarl
 __all__ = [
   'current',
   'get',
+  'get_legacy_data',
   'get_list',
   ]
 
@@ -27,6 +28,7 @@ def get_current(session=None):
 
 current = get_current
 
+
 @exc.returns_api_error_checked_result
 @with_default_session
 def get_data(match_id, session=None):
@@ -39,6 +41,17 @@ def get_data(match_id, session=None):
 
 
 get = get_data
+
+
+@exc.returns_api_error_checked_result
+@with_default_session
+def get_legacy_data(match_id, session=None):
+  """Returns a raw legacy match XML data string."""
+  match_id = str(match_id)
+  assert match_id.isdecimal()
+  url = session.baseurl / f'xml:matches'
+  r = session.get(url, params={"m": match_id}).text
+  return r
 
 
 @with_default_session

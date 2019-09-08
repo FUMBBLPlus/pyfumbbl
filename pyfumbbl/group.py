@@ -10,8 +10,8 @@ from pyfumbbl import match
 
 __all__ = [
     'get',
-    'get_members',
-    'get_tournaments',
+    'members',
+    'tournaments',
   ]
 
 
@@ -58,16 +58,19 @@ def get_members_data(group_id, session=None):
   return d.get('members', [])
 
 
-get_members = get_members_data
+members = get_members_data
 
 
 @exc.returns_api_error_checked_result
 @with_default_session
-def get_tournaments(groupId, session=None):
+def get_tournaments_data(groupId, session=None):
   """Returns a the list of tournaments of a group."""
   url = session.baseurl / f'api/group/tournaments/{groupId}'
   r = session.get(url)
   return r.json()
+
+
+tournaments = get_tournaments_data
 
 
 class LegacyDataConverter(_helper.LegacyDataConverter):
