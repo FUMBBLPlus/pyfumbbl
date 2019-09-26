@@ -2,9 +2,9 @@ import copy
 import json
 from xml.etree import ElementTree
 
-from fumbbl_session import _helper
-from fumbbl_session._session import with_default_session
-from fumbbl_session import exc
+from pyfumbbl import _helper
+from pyfumbbl._session import with_default_session
+from pyfumbbl import exc
 
 __all__ = [
     'get_all_matches',

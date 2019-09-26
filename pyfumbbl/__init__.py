@@ -2,6 +2,7 @@ __version__ = '0.1.0'
 
 from ._session import session
 
+from . import coach
 from . import division
 from . import exc
 from . import group
