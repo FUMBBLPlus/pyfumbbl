@@ -34,6 +34,8 @@ def get_all_matches(team_id, session=None):
         session=session,
     )
     n = len(batch)
+    if not n:
+      break
     if latest_match_id is None:
       r.extend(batch)
     else:
@@ -130,7 +132,6 @@ class LegacyDataConverter(_helper.LegacyDataConverter):
       'currentSpps': 'spp',
       'nr': 'number',
       'playerStatistics': 'statistics',
-      'rosterId': 'roster',
   }
 
   @classmethod

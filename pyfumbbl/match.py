@@ -31,11 +31,13 @@ current = get_current
 
 @exc.returns_api_error_checked_result
 @with_default_session
-def get_data(match_id, session=None):
+def get_data(match_id, verbose=1, session=None):
   """Returns a match data."""
   match_id = str(match_id)
   assert match_id.isdecimal()
   url = session.baseurl / f'api/match/get/{match_id}'
+  if verbose:
+    url = url.update_query(verbose=verbose)
   r = session.get(url).json()
   return r
 
